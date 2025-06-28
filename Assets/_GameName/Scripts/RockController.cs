@@ -7,7 +7,8 @@ public class RockController : MonoBehaviour
     public float spinSpeed = 40.0f;
     public Boolean fired = false;
     public bool combine = false;
-    
+    public bool expand = false;
+    public bool contract= false;
     public float speedRelease = 5000f;
     
     Rigidbody rb ;
@@ -21,7 +22,7 @@ public class RockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if (fired)
         {
@@ -29,7 +30,7 @@ public class RockController : MonoBehaviour
             GetComponent<Collider>().enabled = true;
             rb.useGravity = true;
             rb.AddForce(player.transform.forward * speedRelease, ForceMode.Impulse);
-            
+
 
         }
         else if (combine)
@@ -39,11 +40,20 @@ public class RockController : MonoBehaviour
             Vector3 target = player.transform.position + new Vector3(0, 3, 0);
             transform.position = Vector3.MoveTowards(transform.position, target, 0.5f * Time.deltaTime);
 
-            
+
 
         }
-        
-            transform.Rotate(Vector3.forward, Time.deltaTime * spinSpeed);
+        else if (expand) {
+            
+            transform.Translate(Vector3.forward * 4f * Time.deltaTime);
+
+        } else if (contract) {
+
+            transform.Translate(Vector3.back * 4f * Time.deltaTime);
+            
+        }
+
+        transform.Rotate(Vector3.forward, Time.deltaTime * spinSpeed);
         
     }
 }

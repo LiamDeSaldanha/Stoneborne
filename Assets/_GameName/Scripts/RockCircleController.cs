@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class RockCircleController : MonoBehaviour
 {
@@ -34,8 +35,9 @@ public class RockCircleController : MonoBehaviour
                 rocks[rockInterval] = null;
             }
             rockInterval++;
-            if (rockInterval > rocks.Length) {
-                
+            if (rockInterval > rocks.Length)
+            {
+
                 rockInterval = 0;
             }
         }
@@ -48,34 +50,96 @@ public class RockCircleController : MonoBehaviour
             {
                 if (rocks[i] != null)
                 {
-                    rocks[i].GetComponent<RockController>().combine= true;//
-                   // Destroy(rocks[i].gameObject);
+                    rocks[i].GetComponent<RockController>().combine = true;//
+                                                                           // Destroy(rocks[i].gameObject);
                 }
-                
+
             }
             StartCoroutine(GenerateBigRock());
-            
+
 
         }
-        else
+
+        transform.Rotate(0, Time.deltaTime * spinSpeed, 0);
+
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.Rotate(0, Time.deltaTime * spinSpeed, 0);
+
+            for (int i = 0; i < rocks.Length; i++)
+            {
+                if (rocks[i] != null)
+                {
+                    rocks[i].GetComponent<RockController>().expand = true;
+                }
+
+            }
+
+            StartCoroutine(GenerateRockExpansion());
+            
+
+
         }
 
     }
 
-    IEnumerator GenerateBigRock() {
+    IEnumerator GenerateBigRock()
+    {
 
         yield return new WaitForSeconds(6.5f);
         for (int i = 0; i < rocks.Length; i++)
         {
             if (rocks[i] != null)
             {
-                 Destroy(rocks[i].gameObject);
+                Destroy(rocks[i].gameObject);
             }
 
         }
-        rocks[rockInterval] = Instantiate(bigRock, player.transform.position + new Vector3(0, 4, 0), bigRock.transform.rotation,transform);
+        rocks[rockInterval] = Instantiate(bigRock, player.transform.position + new Vector3(0, 4, 0), bigRock.transform.rotation, transform);
         rocks[rockInterval].GetComponent<RockController>().combine = true;
     }
+
+
+    IEnumerator GenerateRockExpansion()
+    {
+
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < rocks.Length; i++)
+        {
+            if (rocks[i] != null)
+            {
+                
+                rocks[i].GetComponent<RockController>().expand = false;
+
+                rocks[i].GetComponent<RockController>().contract = true;
+
+
+            }
+
+        }
+        StartCoroutine(GenerateRockContraction());
+
+    }
+
+    IEnumerator GenerateRockContraction()
+    {
+
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < rocks.Length; i++)
+        {
+            if (rocks[i] != null)
+            {
+                
+             
+
+                rocks[i].GetComponent<RockController>().contract = false;
+
+
+            }
+
+        }
+
+    }
+
+
 }
