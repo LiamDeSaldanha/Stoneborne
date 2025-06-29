@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
+using System.Collections.Generic;
 
 public class RockCircleController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class RockCircleController : MonoBehaviour
     bool timer = false;
     public TextMeshProUGUI reloadText;
     private float waitTime = 5f;
+    public Queue<int> rockQueue = new Queue<int>();  
 
     int rockInterval;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,11 +43,11 @@ public class RockCircleController : MonoBehaviour
 
         if (parent.CompareTag("Player"))
         {
-            
 
-            if (Input.GetKeyDown(KeyCode.F) )
+
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (rockInterval > rocks.Length-1)
+                if (rockInterval > rocks.Length - 1)
                 {
 
                     rockInterval = 0;
@@ -53,11 +55,12 @@ public class RockCircleController : MonoBehaviour
                 if (rocks[rockInterval] != null)
                 {
                     rocks[rockInterval].GetComponent<RockController>().fired = true;
+                    rockQueue.Enqueue(rockInterval);
                     rocks[rockInterval] = null;
-                    
+                    rockInterval++;
                 }
-                rockInterval++;
                 
+
             }
 
 
@@ -98,16 +101,20 @@ public class RockCircleController : MonoBehaviour
 
 
             }
+
+
+
+
         }
+
 
 
         if (!timer && !rockCircleFull())
         {
             timer = true;
-            Debug.Log("Timer detected");
+            Debug.Log(parent.name + " : Timer detected");
             StartCoroutine(rockTimer());
         }
-
 
 
     }
@@ -115,22 +122,30 @@ public class RockCircleController : MonoBehaviour
 
     IEnumerator rockTimer()
     {
-        
-        
-        
-        
+
+
+
+
 
         float timeLeft = waitTime;
 
         while (timeLeft > 0)
         {
-            reloadText.text = timeLeft.ToString("F1") ;
+            if (parent.CompareTag("Player"))
+            {
+                reloadText.text = timeLeft.ToString("F1");
+            }
             yield return null;
             timeLeft -= Time.deltaTime;
         }
-        Debug.Log("timer finished");
+        if (parent.CompareTag("Player"))
+        {
+            
+            reloadText.text = "0s";
+        }
+        Debug.Log(parent.name +"timer finished");
         timer = false;
-        reloadText.text = "0s";
+        
         spawnGenericRock();
 
 
@@ -195,7 +210,7 @@ public class RockCircleController : MonoBehaviour
 
     }
 
-   
+
 
     public bool rockCircleFull()
     {
@@ -219,25 +234,35 @@ public class RockCircleController : MonoBehaviour
 
     public void spawnGenericRock()
     {
-        for (int i = 0; i < rocks.Length; i++)
+
+        if (rockQueue.Count != 0) { 
+            int temp =rockQueue.Dequeue();
+            rocks[temp] = Instantiate(genericRocks, transform);
+            rocks[temp].GetComponent<RockController>().parent = parent;
+            rocks[temp].transform.localPosition = originalRockPos[temp]; 
+            return;
+        }
+
+
+
+       /* for (int i = 0; i < rocks.Length; i++)
         {
-            if (rocks[i] == null )
+            if (rocks[i] == null)
             {
 
 
 
-                //rocks[rockInterval] = Instantiate(genericRocks, transform.position + originalRockPos[rockInterval], genericRocks.transform.rotation, transform);
                 
-                rocks[i] = Instantiate(genericRocks,transform);
-                rocks[i].GetComponent<RockController>().parent = parent; 
-                //rocks[rockInterval].transform.SetParent(transform, false); // Keep local position
+                rocks[i] = Instantiate(genericRocks, transform);
+                rocks[i].GetComponent<RockController>().parent = parent;
+                
                 rocks[i].transform.localPosition = originalRockPos[i]; // Set local space
                 return;
-                
+
 
             }
 
-        }
+        }*/
     }
 
 

@@ -29,9 +29,10 @@ public class FollowPlayer : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Vector3 lookDirection = (player.transform.position - parent.transform.position).normalized;
+            Vector3 lookDirection = player.transform.position - parent.transform.position;
+            lookDirection.y = 0f; // ignore vertical tilt
+            lookDirection.Normalize();
 
-           
 
             // Move
             parent.transform.position += lookDirection * speed * Time.deltaTime;

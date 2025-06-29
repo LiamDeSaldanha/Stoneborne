@@ -40,9 +40,11 @@ public class AttackPlayer : MonoBehaviour
             if (rockCircleController.rocks[rockInterval] != null)
             {
                 rockCircleController.rocks[rockInterval].GetComponent<RockController>().fired = true;
-                //rockCircleController.rocks[rockInterval] = null;
+                rockCircleController.rockQueue.Enqueue(rockInterval);
+                rockCircleController.rocks[rockInterval] = null;
+                rockInterval++;
             }
-            rockInterval++;
+            
             
 
 
