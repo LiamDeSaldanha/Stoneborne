@@ -1,6 +1,8 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class RockCircleController : MonoBehaviour
@@ -21,6 +23,9 @@ public class RockCircleController : MonoBehaviour
     new Vector3(-2,0,0),
     new Vector3(-1.4142f,0,1.4142f)};
     public bool timer_running = false;
+    bool timer = false;
+    public TextMeshProUGUI reloadText;
+    private float waitTime = 5f;
 
     int rockInterval;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,27 +35,29 @@ public class RockCircleController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
 
 
         if (parent.CompareTag("Player"))
         {
-            // transform.Rotate(0, 90 * Time.deltaTime, 0, Space.Self);
-            if (Input.GetKeyDown(KeyCode.F) && rockInterval < rocks.Length)
-            {
+            
 
-                if (rocks[rockInterval] != null)
-                {
-                    rocks[rockInterval].GetComponent<RockController>().fired = true;
-                    rocks[rockInterval] = null;
-                }
-                rockInterval++;
-                if (rockInterval > rocks.Length)
+            if (Input.GetKeyDown(KeyCode.F) )
+            {
+                if (rockInterval > rocks.Length-1)
                 {
 
                     rockInterval = 0;
                 }
+                if (rocks[rockInterval] != null)
+                {
+                    rocks[rockInterval].GetComponent<RockController>().fired = true;
+                    rocks[rockInterval] = null;
+                    
+                }
+                rockInterval++;
+                
             }
 
 
@@ -92,6 +99,41 @@ public class RockCircleController : MonoBehaviour
 
             }
         }
+
+
+        if (!timer && !rockCircleFull())
+        {
+            timer = true;
+            Debug.Log("Timer detected");
+            StartCoroutine(rockTimer());
+        }
+
+
+
+    }
+
+
+    IEnumerator rockTimer()
+    {
+        
+        
+        
+        
+
+        float timeLeft = waitTime;
+
+        while (timeLeft > 0)
+        {
+            reloadText.text = timeLeft.ToString("F1") ;
+            yield return null;
+            timeLeft -= Time.deltaTime;
+        }
+        Debug.Log("timer finished");
+        timer = false;
+        reloadText.text = "0s";
+        spawnGenericRock();
+
+
     }
 
     IEnumerator GenerateBigRock()
@@ -107,7 +149,8 @@ public class RockCircleController : MonoBehaviour
 
         }
         rocks[rockInterval] = Instantiate(bigRock, parent.transform.position + new Vector3(0, 4, 0), bigRock.transform.rotation, transform);
-        rocks[rockInterval].GetComponent<RockController>().combine = true;
+        rocks[rockInterval].GetComponent<RockController>().parent = parent;
+        // rocks[rockInterval].GetComponent<RockController>().combine = true;
     }
 
 
@@ -185,10 +228,12 @@ public class RockCircleController : MonoBehaviour
 
                 //rocks[rockInterval] = Instantiate(genericRocks, transform.position + originalRockPos[rockInterval], genericRocks.transform.rotation, transform);
                 
-                rocks[rockInterval] = Instantiate(genericRocks);
-                rocks[rockInterval].GetComponent<RockController>().parent = gameObject; //
-                rocks[rockInterval].transform.SetParent(transform, false); // Keep local position
-                rocks[rockInterval].transform.localPosition = originalRockPos[rockInterval]; // Set local space
+                rocks[i] = Instantiate(genericRocks,transform);
+                rocks[i].GetComponent<RockController>().parent = parent; 
+                //rocks[rockInterval].transform.SetParent(transform, false); // Keep local position
+                rocks[i].transform.localPosition = originalRockPos[i]; // Set local space
+                return;
+                
 
             }
 

@@ -109,7 +109,7 @@ MonoBehaviour:
   combine: 0
   expand: 0
   contract: 0
-  speedRelease: 2
+  speedRelease: 100
 --- !u!114 &-7602199873082881073
 MonoBehaviour:
   m_ObjectHideFlags: 0

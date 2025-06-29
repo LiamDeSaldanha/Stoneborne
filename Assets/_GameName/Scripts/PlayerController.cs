@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speedOfBus = 20.0f;
+    public float throwSpeed = 20.0f;
     private float turnSpeed = 100.0f;
     private float horizontalInput;
     private float verticalInput;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         //Move forward
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * Time.deltaTime * speedOfBus*verticalInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed * verticalInput);
         transform.Rotate(Vector3.up,Time.deltaTime*turnSpeed * horizontalInput);
 
     }

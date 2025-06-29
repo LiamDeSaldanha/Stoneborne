@@ -56,16 +56,17 @@ MonoBehaviour:
   spinSpeed: 40
   yOffset: 0
   rocks:
-  - {fileID: 1808841027561017898}
-  - {fileID: 1156326978167415384}
-  - {fileID: 7253216519104184282}
   - {fileID: 8248453998301086169}
-  - {fileID: 349484375714457607}
   - {fileID: 9034749672243826170}
+  - {fileID: 7253216519104184282}
   - {fileID: 415312027155559946}
+  - {fileID: 1156326978167415384}
+  - {fileID: 1808841027561017898}
+  - {fileID: 349484375714457607}
   - {fileID: 6729583616666836534}
   bigRock: {fileID: 7637561052532352862, guid: cfebab4a1d7e4274f8e41f0f41dc00ce, type: 3}
   genericRocks: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+  timer_running: 0
 --- !u!1001 &763811645152396924
 PrefabInstance:
   m_ObjectHideFlags: 0

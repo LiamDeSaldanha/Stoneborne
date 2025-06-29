@@ -5,7 +5,7 @@ public class AttackPlayer : MonoBehaviour
 {
     public GameObject rockCircle;
     private RockCircleController rockCircleController;
-    bool timer = false;
+    
     
     private int rockInterval;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,18 +19,10 @@ public class AttackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!timer && !rockCircleController.rockCircleFull()) { 
-        timer = true;
-        rockCircleController.spawnGenericRock();
-            StartCoroutine(rockTimer());
-        }
+        
     }
 
-    IEnumerator rockTimer() {
-        yield return new WaitForSeconds(5f);
-        Debug.Log("timer finished");
-        timer = false;
-    }
+  
 
     private void OnTriggerStay(Collider other)
     {
@@ -48,7 +40,7 @@ public class AttackPlayer : MonoBehaviour
             if (rockCircleController.rocks[rockInterval] != null)
             {
                 rockCircleController.rocks[rockInterval].GetComponent<RockController>().fired = true;
-                rockCircleController.rocks[rockInterval] = null;
+                //rockCircleController.rocks[rockInterval] = null;
             }
             rockInterval++;
             

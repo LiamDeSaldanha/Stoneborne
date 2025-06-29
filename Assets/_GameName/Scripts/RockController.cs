@@ -26,6 +26,7 @@ public class RockController : MonoBehaviour
 
         if (fired)
         {
+            fired = false;
             transform.parent = null;
             GetComponent<Collider>().enabled = true;
             rb.useGravity = true;
@@ -40,7 +41,7 @@ public class RockController : MonoBehaviour
             //transform.position = player.transform.position + new Vector3(0,3,0);
             Vector3 target = parent.transform.position + new Vector3(0, 3, 0);
             transform.position = Vector3.MoveTowards(transform.position, target, 0.5f * Time.deltaTime);
-
+            
 
 
         }
