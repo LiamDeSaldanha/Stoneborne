@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7907968366585385040}
   - component: {fileID: 6566635354820852693}
   m_Layer: 0
-  m_Name: Rock_01
+  m_Name: GenericRock
   m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,9 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96be534aae2c71f4a9f5cec8804f7681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
   spinSpeed: 40
   fired: 0
   combine: 0
+  expand: 0
+  contract: 0
   speedRelease: 2
 --- !u!114 &-7602199873082881073
 MonoBehaviour:

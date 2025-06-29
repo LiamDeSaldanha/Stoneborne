@@ -15,7 +15,7 @@ public class CollisionDection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && CompareTag("Rock"))
         {
             Destroy(gameObject);
             Destroy(other.gameObject);

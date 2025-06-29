@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92913127c642bf14191dead76fb1bcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
   spinSpeed: 40
   yOffset: 0
   rocks:
@@ -64,6 +65,7 @@ MonoBehaviour:
   - {fileID: 415312027155559946}
   - {fileID: 6729583616666836534}
   bigRock: {fileID: 7637561052532352862, guid: cfebab4a1d7e4274f8e41f0f41dc00ce, type: 3}
+  genericRocks: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
 --- !u!1001 &763811645152396924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74,7 +76,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (6)
+      value: Rock 4
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -141,7 +143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (4)
+      value: Rock 7
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,7 +210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01
+      value: Rock 6
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -275,7 +277,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (1)
+      value: Rock 5
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,7 +344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (7)
+      value: Rock 8
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -409,7 +411,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (2)
+      value: Rock 3
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -476,7 +478,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (5)
+      value: Rock 2
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,7 +545,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
-      value: Rock_01 (3)
+      value: Rock 1
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x

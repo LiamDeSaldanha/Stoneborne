@@ -4,6 +4,7 @@ public class FollowPlayer : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject player;
+    public GameObject parent;
     public float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,13 +18,31 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
 
-        transform.Translate(lookDirection *Time.deltaTime);
-        if (transform.position.y < -10)
+
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+
+        if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Vector3 lookDirection = (player.transform.position - parent.transform.position).normalized;
+
+           
+
+            // Move
+            parent.transform.position += lookDirection * speed * Time.deltaTime;
+
+            // Rotate
+            if (lookDirection != Vector3.zero)
+            {
+                parent.transform.rotation = Quaternion.LookRotation(lookDirection);
+            }
         }
 
     }
+
 }

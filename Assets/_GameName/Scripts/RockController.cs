@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RockController : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject parent;
     public float spinSpeed = 40.0f;
     public Boolean fired = false;
     public bool combine = false;
@@ -15,7 +15,7 @@ public class RockController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        //player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -29,7 +29,8 @@ public class RockController : MonoBehaviour
             transform.parent = null;
             GetComponent<Collider>().enabled = true;
             rb.useGravity = true;
-            rb.AddForce(player.transform.forward * speedRelease, ForceMode.Impulse);
+            rb.AddForce(parent.transform.forward * speedRelease, ForceMode.Impulse);
+            
 
 
         }
@@ -37,7 +38,7 @@ public class RockController : MonoBehaviour
         {
             //transform.parent = null;
             //transform.position = player.transform.position + new Vector3(0,3,0);
-            Vector3 target = player.transform.position + new Vector3(0, 3, 0);
+            Vector3 target = parent.transform.position + new Vector3(0, 3, 0);
             transform.position = Vector3.MoveTowards(transform.position, target, 0.5f * Time.deltaTime);
 
 

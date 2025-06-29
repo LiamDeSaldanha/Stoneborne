@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speedOfBus = 10.0f;
+    private float speedOfBus = 20.0f;
     private float turnSpeed = 100.0f;
     private float horizontalInput;
     private float verticalInput;
