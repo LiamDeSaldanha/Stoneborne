@@ -239,7 +239,11 @@ public class RockCircleController : MonoBehaviour
             int temp =rockQueue.Dequeue();
             rocks[temp] = Instantiate(genericRocks, transform);
             rocks[temp].GetComponent<RockController>().parent = parent;
-            rocks[temp].transform.localPosition = originalRockPos[temp]; 
+            
+
+            rocks[temp].transform.localPosition = originalRockPos[temp];
+            rocks[temp].transform.localRotation = Quaternion.Euler(0, temp * 45, 0);
+
             return;
         }
 

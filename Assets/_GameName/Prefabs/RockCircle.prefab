@@ -67,6 +67,7 @@ MonoBehaviour:
   bigRock: {fileID: 7637561052532352862, guid: cfebab4a1d7e4274f8e41f0f41dc00ce, type: 3}
   genericRocks: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
   timer_running: 0
+  reloadText: {fileID: 0}
 --- !u!1001 &763811645152396924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: -0.92387944
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalRotation.x
@@ -369,11 +370,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.38268343
+      value: 0.3826836
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -381,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -45
+      value: 315
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
