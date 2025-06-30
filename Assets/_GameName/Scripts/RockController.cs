@@ -10,7 +10,7 @@ public class RockController : MonoBehaviour
     public bool expand = false;
     public bool contract= false;
     public float speedRelease = 5000f;
-    public bool isBigRock = false;
+    public static bool isBigRock = false;
     
     Rigidbody rb ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +39,7 @@ public class RockController : MonoBehaviour
         else if (combine)
         {
             
-            Vector3 target = parent.transform.position + new Vector3(0, 3, 0);
+            Vector3 target = parent.transform.position + new Vector3(0, 6, 0);
             transform.position = Vector3.MoveTowards(transform.position, target, 0.5f * Time.deltaTime);
             
 

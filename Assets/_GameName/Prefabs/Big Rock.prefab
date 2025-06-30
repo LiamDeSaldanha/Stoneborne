@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 7637561052532352862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.98871714, z: 0, w: -0.14979452}
-  m_LocalPosition: {x: 0.95259714, y: 0.9370601, z: -10.309011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.97335, y: 0.94314, z: -10.317}
+  m_LocalScale: {x: 0.83029, y: 0.83029, z: 0.83029}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -165,7 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96be534aae2c71f4a9f5cec8804f7681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
   spinSpeed: 40
   fired: 0
   combine: 0
-  speedRelease: 45
+  expand: 0
+  contract: 0
+  speedRelease: 200
