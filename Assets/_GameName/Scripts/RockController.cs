@@ -4,6 +4,7 @@ using UnityEngine;
 public class RockController : MonoBehaviour
 {
     public GameObject parent;
+    public int index;
     public float spinSpeed = 40.0f;
     public Boolean fired = false;
     public bool combine = false;
@@ -52,7 +53,7 @@ public class RockController : MonoBehaviour
         } else if (contract) {
 
             transform.Translate(Vector3.back * 4f * Time.deltaTime);
-            
+
         }
 
         transform.Rotate(Vector3.forward, Time.deltaTime * spinSpeed);

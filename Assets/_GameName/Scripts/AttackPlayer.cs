@@ -12,7 +12,7 @@ public class AttackPlayer : MonoBehaviour
     void Start()
     {
 
-       rockCircleController = rockCircle.gameObject.GetComponent<RockCircleController>();
+       rockCircleController = rockCircle.GetComponent<RockCircleController>();
 
     }
 

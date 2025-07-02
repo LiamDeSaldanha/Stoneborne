@@ -67,7 +67,10 @@ MonoBehaviour:
   bigRock: {fileID: 7637561052532352862, guid: cfebab4a1d7e4274f8e41f0f41dc00ce, type: 3}
   genericRocks: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
   timer_running: 0
-  reloadText: {fileID: 0}
+  reloadSlider: {fileID: 0}
+  bigRockSlider: {fileID: 0}
+  expansionSlider: {fileID: 0}
+  fireSlider: {fileID: 0}
 --- !u!1001 &763811645152396924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
       value: Rock 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -147,6 +154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -213,6 +224,10 @@ PrefabInstance:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
       value: Rock 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -347,6 +366,10 @@ PrefabInstance:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
       value: Rock 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,6 +438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -482,6 +509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4142
@@ -548,6 +579,10 @@ PrefabInstance:
     - target: {fileID: 1106450312279912566, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_Name
       value: Rock 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260504588992975018, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
+      propertyPath: index
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7745724904755113483, guid: 3d3413396312a0e47bad3f32bcae9ad3, type: 3}
       propertyPath: m_LocalPosition.x

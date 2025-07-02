@@ -22,13 +22,13 @@ public class FollowPlayerRotationCamera : MonoBehaviour
         currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref angleVelocity, rotationSmoothTime);
 
         // Convert angle to rotation and apply it to the offset
-        Quaternion rotation = Quaternion.Euler(30, currentAngle, 0);
+        Quaternion rotation = Quaternion.Euler(0, currentAngle, 0);
         Vector3 targetPosition = player.position + rotation * offset;
 
         // Smoothly move the camera to the target position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, 0.05f);
-
+        Vector3 offset_xRotation = new Vector3(0,2,0);
         // Always look at the player
-        transform.LookAt(player.position + Vector3.up * 1.5f);
+        transform.LookAt(player.position+offset_xRotation + Vector3.up * 1.5f);
     }
 }
