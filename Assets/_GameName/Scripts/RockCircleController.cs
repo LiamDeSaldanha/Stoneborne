@@ -110,6 +110,7 @@ public class RockCircleController : MonoBehaviour
 
                 }
                 StartCoroutine(GenerateBigRock());
+                nextRock.Clear();
 
 
             }
