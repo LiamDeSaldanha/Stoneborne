@@ -4,16 +4,18 @@ using UnityEditor.Search;
 using UnityEngine;
 using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.InputSystem.HID;
 
 public class CollisionDection : MonoBehaviour
 {
     GameObject player;
-    GameObject rockCircle;
+    RockCircleController rockCircle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
-        rockCircle = (player.transform.Find("RockCircle")).gameObject;
+        
+         rockCircle = transform.parent.GetComponent<RockCircleController>();
     }
 
     // Update is called once per frame
@@ -23,56 +25,87 @@ public class CollisionDection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") )
+        if (other.gameObject.CompareTag("Enemy") && !rockCircle.parent.CompareTag("Enemy"))
         {
 
-            if (CompareTag("Rock") )
+            if (CompareTag("Rock"))
             {
-                Transform child = other.transform.Find("Health Slider");
+                Debug.Log("collesion detection");
+                Transform child = other.gameObject.transform.Find("Health Slider");
                 if (child != null)
                 {
-                    
-                    
-                   
-               rockCircle.GetComponent<RockCircleController>().updateNextRock = true;
-                
 
 
 
-                
+                    rockCircle.updateNextRock = true;
+
+
+
+
+
                     GameObject childObj = child.gameObject;
-                  
-                    
+
+
                     childObj.GetComponent<HealthSliderManager>().resolveCollision(1);
 
-                    
+
 
 
 
 
                     Destroy(gameObject);
-                   // rockCircle.GetComponent<RockCircleController>().nextRock = new Queue<int>(newQueue);
+                    // rockCircle.GetComponent<RockCircleController>().nextRock = new Queue<int>(newQueue);
                 }
-                
+
 
             }
-            else if (CompareTag("Big_Rock")) {
-                Transform child = other.transform.Find("Health Slider");
+            else if (CompareTag("Big_Rock"))
+            {
+                Transform child = other.gameObject.transform.Find("Health Slider");
 
                 if (child != null)
                 {
                     GameObject childObj = child.gameObject;
 
 
-                    childObj.GetComponent<HealthSliderManager>().resolveCollision(10);
+                    childObj.GetComponent<HealthSliderManager>().resolveCollision(50);
                 }
 
             }
 
-            }
+        }
+
+        if (other.CompareTag("Player") && !rockCircle.parent.CompareTag("Player")) {
+
+            rockCircle.updateNextRock = true;
+            GameObject child = GameObject.Find("Player Health Slider");
+
+
+
+
+            GameObject childObj = child.gameObject;
+
+
+            childObj.GetComponent<HealthSliderManager>().resolveCollision(1);
+
+
+
+
+
+
+            Destroy(gameObject);
+
+        }
+    
+    
+    
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 
-    
 
 
 

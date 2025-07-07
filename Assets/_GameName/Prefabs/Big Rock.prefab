@@ -108,7 +108,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.9306881, y: 1.9458139, z: 2.1928666}
   m_Center: {x: -0.10209929, y: 0.03584683, z: 0.08352535}
@@ -151,9 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08472ca8334cbae49979576b1310b0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xBoundRange: 250
-  zBoundRange: 250
-  yBoundRange: 50
 --- !u!114 &-2275516737815977755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,12 +164,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
+  index: 0
   spinSpeed: 40
   fired: 0
   combine: 0
   expand: 0
   contract: 0
   speedRelease: 200
+  isLongRock: 0
 --- !u!114 &4565754754940173721
 MonoBehaviour:
   m_ObjectHideFlags: 0

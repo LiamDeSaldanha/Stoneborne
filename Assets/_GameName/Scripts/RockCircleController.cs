@@ -30,6 +30,7 @@ public class RockCircleController : MonoBehaviour
     public Slider bigRockSlider;
     public Slider expansionSlider;
     public Slider fireSlider;
+    public bool hasBigRock;
 
 
     public Queue<int> rockQueue = new Queue<int>();
@@ -39,6 +40,15 @@ public class RockCircleController : MonoBehaviour
     public bool updateNextRock = false;
     private bool spell3Running = false;
     private bool spell2Running = false;
+
+    public string Enemy_name;
+    public bool GolemAttack;
+    private bool golemAttackTimer;
+
+    public bool bossTimer = false;
+    public bool BossAttack;
+
+    public bool BigRockReady;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,12 +57,18 @@ public class RockCircleController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-
+        
 
         if (parent.CompareTag("Player"))
         {
+            
+                
+            
+
+
+
             if (updateNextRock) {
 
                 
@@ -62,9 +78,9 @@ public class RockCircleController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F) && !spell3Running && !spell2Running)
             {
 
-                if (RockController.isBigRock)
+                if (hasBigRock)
                 {
-                    RockController.isBigRock = false;
+                    hasBigRock = false;
                     rocks[0].GetComponent<RockController>().fired = true;
                     StartCoroutine(FireRock());
                     rocks[0] = null;
@@ -99,7 +115,7 @@ public class RockCircleController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.G) && rockCircleFull())
             {
                 spell2Running = true;
-                RockController.isBigRock = true;
+                hasBigRock = true;
                 for (int i = 0; i < rocks.Length; i++)
                 {
                     if (rocks[i] != null)
@@ -115,7 +131,7 @@ public class RockCircleController : MonoBehaviour
 
             }
 
-            transform.Rotate(0, Time.deltaTime * spinSpeed, 0);
+            
 
 
             if (Input.GetKeyDown(KeyCode.R) && rockCircleFull())
@@ -145,17 +161,95 @@ public class RockCircleController : MonoBehaviour
 
         }
 
+        transform.Rotate(0, Time.deltaTime * spinSpeed, 0);
 
 
-        if (!timer && !rockCircleFull() && !RockController.isBigRock && !spell3Running && !spell2Running)
+
+
+        if (parent.CompareTag("Enemy") && Enemy_name=="Golem" && GolemAttack && 
+            !golemAttackTimer && rockCircleFull() ) {
+
+
+
+            golemAttackTimer = true;
+            StartCoroutine(golemTimer());
+                spell3Running = true;
+                spinSpeed = 500;
+
+                for (int i = 0; i < rocks.Length; i++)
+                {
+                    if (rocks[i] != null)
+                    {
+                        rocks[i].GetComponent<RockController>().expand = true;
+                        rocks[i].GetComponent<Collider>().enabled = true;
+
+                    }
+
+                }
+
+                StartCoroutine(GenerateRockExpansion());
+
+
+            
+        
+        }
+
+
+        
+
+
+       if( parent.CompareTag("Enemy") && Enemy_name == "Boss" &&
+            !bossTimer && BossAttack && rockCircleFull() )
+        {
+            Debug.Log("BOSS ATTACK");
+            bossTimer = true;
+            StartCoroutine(BossTimer());
+            spell2Running = true;
+            hasBigRock = true;
+            for (int i = 0; i < rocks.Length; i++)
+            {
+                if (rocks[i] != null)
+                {
+                    rocks[i].GetComponent<RockController>().combine = true;
+                }
+
+            }
+            StartCoroutine(GenerateBigRock());
+            nextRock.Clear();
+
+
+        }
+
+
+        if (!timer && !rockCircleFull() && !hasBigRock && !spell3Running && !spell2Running)
         {
             timer = true;
             Debug.Log(parent.name + " : Timer detected");
             StartCoroutine(rockTimer());
         }
 
+       
+
 
     }
+
+
+    IEnumerator golemTimer() {
+
+
+        yield return new WaitForSeconds(7f);
+        golemAttackTimer = false;
+    }
+
+    IEnumerator BossTimer()
+    {
+
+
+        yield return new WaitForSeconds(7f);
+        bossTimer = false;
+    }
+
+   
 
 
     IEnumerator rockTimer()
@@ -228,9 +322,25 @@ public class RockCircleController : MonoBehaviour
         rocks[0] = Instantiate(bigRock, parent.transform.position + new Vector3(0, 6, 0), bigRock.transform.rotation, transform);
         rocks[0].GetComponent<RockController>().parent = parent;
         spell2Running = false;
+        if (BossAttack) {
+            StartCoroutine(ThrowBigRock());
+            
+            BossAttack = false;
+
+        }
+
+
 
     }
 
+
+    IEnumerator ThrowBigRock() { 
+    
+        yield return new WaitForSeconds(2f);
+        rocks[0].GetComponent<RockController>().fired = true;
+        rocks[0] = null;
+        hasBigRock = false;
+    }
 
     IEnumerator GenerateRockExpansion()
     {
@@ -300,6 +410,9 @@ public class RockCircleController : MonoBehaviour
         spinSpeed = 40;
         updateNextRockQueue();
         spell3Running = false;
+        if (GolemAttack) { 
+        GolemAttack = false;
+        }
     }
 
     IEnumerator FireRock()
@@ -349,7 +462,7 @@ public class RockCircleController : MonoBehaviour
     public void spawnGenericRock()
     {
         // Debug.Log("rockQueue"+rockQueue.Count);
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < rocks.Length; i++)
             if (rocks[i] == null)
             {
                 //int temp = rockQueue.Dequeue();
@@ -398,7 +511,7 @@ public class RockCircleController : MonoBehaviour
     void updateNextRockQueue() {
 
         Queue<int> temp = new Queue<int>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < rocks.Length; i++) {
 
             if (rocks[i] != null && inQueue(i)) { 
             

@@ -17,7 +17,9 @@ public class OutOfBounds : MonoBehaviour
         // Optional: exclude the player or important objects
         if (!other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+
+            Debug.Log("Out of bounds triggered");
+            //Destroy(gameObject);
         }
     }
 }

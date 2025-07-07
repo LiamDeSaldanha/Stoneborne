@@ -11,7 +11,8 @@ public class RockController : MonoBehaviour
     public bool expand = false;
     public bool contract= false;
     public float speedRelease = 5000f;
-    public static bool isBigRock = false;
+    //public static bool isBigRock = false;
+    public bool isLongRock ;
     
     Rigidbody rb ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,8 +56,11 @@ public class RockController : MonoBehaviour
             transform.Translate(Vector3.back * 4f * Time.deltaTime);
 
         }
-
-        transform.Rotate(Vector3.forward, Time.deltaTime * spinSpeed);
         
+            transform.Rotate(Vector3.forward, Time.deltaTime * spinSpeed);
+
+
+        
+
     }
 }

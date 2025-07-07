@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3366936212144057502}
   - component: {fileID: 7907968366585385040}
   - component: {fileID: 6566635354820852693}
+  - component: {fileID: 6713149184214882799}
   m_Layer: 0
   m_Name: GenericRock
   m_TagString: Rock
@@ -104,12 +105,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
+  index: 0
   spinSpeed: 40
   fired: 0
   combine: 0
   expand: 0
   contract: 0
   speedRelease: 100
+  isLongRock: 0
 --- !u!114 &-7602199873082881073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +169,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.85556597, y: 0.53457355, z: 0.8734083}
   m_Center: {x: -0.016977252, y: 0.02885053, z: 0.0040054624}
@@ -177,11 +180,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106450312279912566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08472ca8334cbae49979576b1310b0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xBoundRange: 250
-  zBoundRange: 250
-  yBoundRange: 50
+--- !u!114 &6713149184214882799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106450312279912566}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.0039215535, g: 0.50980395, b: 0.47883183, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
