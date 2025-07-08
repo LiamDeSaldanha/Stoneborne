@@ -2,48 +2,39 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    private Rigidbody rb;
     private GameObject player;
-    public GameObject parent;
+    public GameObject parent; // Should have a CharacterController
     public float speed;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private CharacterController controller;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-
+        controller = parent.GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
-
+        // Nothing needed here for now
     }
 
     private void OnTriggerStay(Collider other)
     {
-
-
         if (other.CompareTag("Player"))
         {
-            Vector3 lookDirection = player.transform.position - parent.transform.position;
-            lookDirection.y = 0f; // ignore vertical tilt
-            lookDirection.Normalize();
-
+            Vector3 direction = player.transform.position - parent.transform.position;
+            direction.y = 0f;
+            direction.Normalize();
 
             // Move
-            parent.transform.position += lookDirection * speed * Time.deltaTime;
+            controller.Move(direction * speed * Time.deltaTime);
 
             // Rotate
-            if (lookDirection != Vector3.zero)
+            if (direction != Vector3.zero)
             {
-                parent.transform.rotation = Quaternion.LookRotation(lookDirection);
+                parent.transform.rotation = Quaternion.LookRotation(direction);
             }
         }
-
     }
-
 }

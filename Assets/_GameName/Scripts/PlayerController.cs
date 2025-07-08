@@ -14,24 +14,27 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
 
 
-      
 
 
 
-        
-        //Move forward
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed * verticalInput);
-        transform.Rotate(Vector3.up,Time.deltaTime*turnSpeed * horizontalInput);
-        
+        // Physics-based movement and rotation
+        Vector3 moveDirection = transform.forward * throwSpeed * verticalInput * Time.deltaTime;
+        Quaternion deltaRotation = Quaternion.Euler(0f, horizontalInput * turnSpeed * Time.deltaTime, 0f);
+
+        rb.MovePosition(rb.position + moveDirection);
+        rb.MoveRotation(rb.rotation * deltaRotation);
+
+
     }
 
-    
+
 }
