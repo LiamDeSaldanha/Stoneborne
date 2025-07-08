@@ -31,6 +31,7 @@ public class RockCircleController : MonoBehaviour
     public Slider expansionSlider;
     public Slider fireSlider;
     public bool hasBigRock;
+    public float rockReloadTime =4f;
 
 
     public Queue<int> rockQueue = new Queue<int>();
@@ -46,7 +47,8 @@ public class RockCircleController : MonoBehaviour
     private bool golemAttackTimer;
 
     public bool bossTimer = false;
-    public bool BossAttack;
+    public bool BossAttack1;
+    public bool BossAttack2;
 
     public bool BigRockReady;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -199,9 +201,8 @@ public class RockCircleController : MonoBehaviour
 
 
        if( parent.CompareTag("Enemy") && Enemy_name == "Boss" &&
-            !bossTimer && BossAttack && rockCircleFull() )
+            !bossTimer && BossAttack1 && rockCircleFull() && !spell2Running && !spell3Running)
         {
-            Debug.Log("BOSS ATTACK");
             bossTimer = true;
             StartCoroutine(BossTimer());
             spell2Running = true;
@@ -216,6 +217,30 @@ public class RockCircleController : MonoBehaviour
             }
             StartCoroutine(GenerateBigRock());
             nextRock.Clear();
+
+
+        }
+
+        if (parent.CompareTag("Enemy") && Enemy_name == "Boss" &&
+             !bossTimer && BossAttack2 && rockCircleFull() && !spell2Running && !spell3Running)
+        {
+            bossTimer = true;
+            StartCoroutine(BossTimer());
+            spell3Running = true;
+            spinSpeed = 500;
+
+            for (int i = 0; i < rocks.Length; i++)
+            {
+                if (rocks[i] != null)
+                {
+                    rocks[i].GetComponent<RockController>().expand = true;
+                    rocks[i].GetComponent<Collider>().enabled = true;
+
+                }
+
+            }
+
+            StartCoroutine(GenerateRockExpansion());
 
 
         }
@@ -245,7 +270,7 @@ public class RockCircleController : MonoBehaviour
     {
 
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(11f);
         bossTimer = false;
     }
 
@@ -258,7 +283,7 @@ public class RockCircleController : MonoBehaviour
 
 
 
-        float waitTime = 5f;
+        float waitTime = rockReloadTime;
         float timeLeft = waitTime;
 
         while (timeLeft > 0)
@@ -322,10 +347,10 @@ public class RockCircleController : MonoBehaviour
         rocks[0] = Instantiate(bigRock, parent.transform.position + new Vector3(0, 6, 0), bigRock.transform.rotation, transform);
         rocks[0].GetComponent<RockController>().parent = parent;
         spell2Running = false;
-        if (BossAttack) {
+        if (BossAttack1) {
             StartCoroutine(ThrowBigRock());
             
-            BossAttack = false;
+            BossAttack1 = false;
 
         }
 
@@ -412,6 +437,10 @@ public class RockCircleController : MonoBehaviour
         spell3Running = false;
         if (GolemAttack) { 
         GolemAttack = false;
+        }
+
+        if (BossAttack2) {
+            BossAttack2 = false;
         }
     }
 

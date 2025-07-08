@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Enemy_Rock
   - Big_Rock
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - MiniMap
+  - Enviroment
   - 
   - 
   - 

@@ -33,17 +33,31 @@ public class AttackPlayer : MonoBehaviour
             rockCircleController.GolemAttack = true;
 
         }
-        else if ( other.CompareTag("Player") && rockCircleController.Enemy_name == "Boss" && !rockCircleController.hasBigRock) {
+        else if (other.CompareTag("Player") && rockCircleController.Enemy_name == "Boss" &&
+            !rockCircleController.hasBigRock && rockCircleController.rockCircleFull() 
+            && !rockCircleController.BossAttack1 && !rockCircleController.BossAttack2)
+        {
 
 
-            
-            rockCircleController.BossAttack = true;
-            
+            int random = Random.Range(0, 10);
+
+            if (random > 4) {
+                rockCircleController.BossAttack1 = true;
+                Debug.Log("Boss:Big Rock");
+
+            }
+            else {
+                Debug.Log("Boss:Expansion");
+                rockCircleController.BossAttack2 = true;
+
+            }
+
+
         }
         else
         {
             if ((other.CompareTag("Player") && !(rockCircleController.Enemy_name == "Boss")
-                && !(rockCircleController.Enemy_name == "Golem")) )
+                && !(rockCircleController.Enemy_name == "Golem")))
             {
                 if (rockInterval > rockCircleController.rocks.Length - 1)
                 {
@@ -61,7 +75,7 @@ public class AttackPlayer : MonoBehaviour
                     rockCircleController.rocks[rockInterval] = null;
                     rockInterval++;
                 }
-                rockCircleController.BossAttack = false;
+                
 
 
 
