@@ -5,17 +5,20 @@ using UnityEngine;
 using System.Collections.Generic;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.InputSystem.HID;
+using Unity.Cinemachine;
 
 public class CollisionDection : MonoBehaviour
 {
     GameObject player;
     RockCircleController rockCircle;
+    public ParticleSystem damageParticlePrefab;
+    ParticleSystem damageParticleInstance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
-        
-         rockCircle = transform.parent.GetComponent<RockCircleController>();
+
+        rockCircle = transform.parent.GetComponent<RockCircleController>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class CollisionDection : MonoBehaviour
                 {
 
 
-
+                    SpawnDamageParticle(other);
                     rockCircle.updateNextRock = true;
 
 
@@ -75,7 +78,8 @@ public class CollisionDection : MonoBehaviour
 
         }
 
-        if (other.CompareTag("Player") && !rockCircle.parent.CompareTag("Player")) {
+        if (other.CompareTag("Player") && !rockCircle.parent.CompareTag("Player"))
+        {
 
             rockCircle.updateNextRock = true;
             GameObject child = GameObject.Find("Player Health Slider");
@@ -96,14 +100,21 @@ public class CollisionDection : MonoBehaviour
             Destroy(gameObject);
 
         }
-    
-    
-    
+
+
+
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        
+
+    }
+
+    void SpawnDamageParticle(Collider other) {
+        Vector3 offset = new Vector3(0, 1, 0);
+        damageParticleInstance = Instantiate(damageParticlePrefab,other.transform.position + offset,Quaternion.identity);
+    
+    
     }
 
 
