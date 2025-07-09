@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageParticlePrefab: {fileID: 6498447477839665813, guid: f46770dc768b4fd4f89013f147d09edd, type: 3}
+  floatingTextPF: {fileID: 6408496679554016922, guid: 513d7ed764ee0a3479ff4e5ad5177904, type: 3}
 --- !u!54 &3366936212144057502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106450312279912566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08472ca8334cbae49979576b1310b0dd, type: 3}
   m_Name: 

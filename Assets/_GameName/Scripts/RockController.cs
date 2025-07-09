@@ -11,6 +11,7 @@ public class RockController : MonoBehaviour
     public bool expand = false;
     public bool contract= false;
     public float speedRelease = 5000f;
+    public float expansionSpeed = 4f;
     //public static bool isBigRock = false;
     public bool isLongRock ;
     
@@ -34,7 +35,7 @@ public class RockController : MonoBehaviour
             GetComponent<Collider>().enabled = true;
             rb.useGravity = true;
             rb.AddForce(parent.transform.forward * speedRelease, ForceMode.Impulse);
-            
+            GetComponent<Outline>().enabled = false;
 
 
         }
@@ -49,11 +50,11 @@ public class RockController : MonoBehaviour
         }
         else if (expand) {
             
-            transform.Translate(Vector3.forward * 4f * Time.deltaTime);
+            transform.Translate(Vector3.forward * expansionSpeed * Time.deltaTime);
 
         } else if (contract) {
 
-            transform.Translate(Vector3.back * 4f * Time.deltaTime);
+            transform.Translate(Vector3.back * expansionSpeed * Time.deltaTime);
 
         }
         
