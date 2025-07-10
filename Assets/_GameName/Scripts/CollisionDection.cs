@@ -1,12 +1,7 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor.Search;
+
+
 using UnityEngine;
-using System.Collections.Generic;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.InputSystem.HID;
-using Unity.Cinemachine;
-using System.Collections;
+
 
 public class CollisionDection : MonoBehaviour
 {
@@ -15,11 +10,14 @@ public class CollisionDection : MonoBehaviour
     public ParticleSystem damageParticlePrefab;
     ParticleSystem damageParticleInstance;
     public GameObject floatingTextPF;
+    public AudioClip hitSFX;
+    private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player");
         rockCircle = transform.parent.GetComponent<RockCircleController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,14 +35,23 @@ public class CollisionDection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
+
+
+
+
         if (other.gameObject.CompareTag("Enemy") && !rockCircle.parent.CompareTag("Enemy"))
         {
+            audioSource.Stop();
+
+            audioSource.clip = hitSFX;
+            audioSource.Play();
 
             if (CompareTag("Rock"))
             {
 
 
-                Debug.Log("collesion detection");
+                Debug.Log(gameObject.name);
                 CreateFloatingText(other);
                 
                 Transform child = other.gameObject.transform.Find("Health Slider");
@@ -92,7 +99,10 @@ public class CollisionDection : MonoBehaviour
 
         if (other.CompareTag("Player") && !rockCircle.parent.CompareTag("Player"))
         {
+            audioSource.Stop();
 
+            audioSource.clip = hitSFX;
+            audioSource.Play();
             rockCircle.updateNextRock = true;
             GameObject child = GameObject.Find("Player Health Slider");
 
@@ -101,8 +111,17 @@ public class CollisionDection : MonoBehaviour
 
             GameObject childObj = child.gameObject;
 
+            if (GetComponent<RockController>().isBigRock) {
 
-            childObj.GetComponent<HealthSliderManager>().resolveCollision(1);
+                childObj.GetComponent<HealthSliderManager>().resolveCollision(5);
+
+            }
+            else
+            {
+                childObj.GetComponent<HealthSliderManager>().resolveCollision(1);
+
+            }
+            
 
 
 

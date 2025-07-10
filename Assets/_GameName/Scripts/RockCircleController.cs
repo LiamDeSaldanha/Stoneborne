@@ -1,11 +1,7 @@
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 using System.Collections.Generic;
-using System;
 
 public class RockCircleController : MonoBehaviour
 {
@@ -358,6 +354,7 @@ public class RockCircleController : MonoBehaviour
         }
         rocks[0] = Instantiate(bigRock, parent.transform.position + new Vector3(0, 6, 0), bigRock.transform.rotation, transform);
         rocks[0].GetComponent<RockController>().parent = parent;
+        rocks[0].GetComponent<RockController>().isBigRock = true;
         spell2Running = false;
         if (BossAttack1)
         {

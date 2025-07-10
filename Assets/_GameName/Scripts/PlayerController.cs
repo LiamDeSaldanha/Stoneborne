@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject NewSpellText;
     private bool flag1;
     private bool flag2;
+    public bool inCombat;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

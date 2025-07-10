@@ -39,6 +39,9 @@ public class FollowPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
+            player.GetComponent<PlayerController>().inCombat = true;
+
             // Ground check
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
             if (isGrounded && velocity.y < 0)
@@ -63,5 +66,10 @@ public class FollowPlayer : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        player.GetComponent<PlayerController>().inCombat = false;
     }
 }

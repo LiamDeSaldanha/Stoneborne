@@ -12,8 +12,10 @@ public class RockController : MonoBehaviour
     public bool contract= false;
     public float speedRelease = 5000f;
     public float expansionSpeed = 4f;
-    //public static bool isBigRock = false;
+    public bool isBigRock = false;
     public bool isLongRock ;
+    public AudioClip swishSFX;
+    private AudioSource audioSource;
     
     Rigidbody rb ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +23,7 @@ public class RockController : MonoBehaviour
     {
         //player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,13 +33,16 @@ public class RockController : MonoBehaviour
 
         if (fired)
         {
+            
             fired = false;
             transform.parent = null;
             GetComponent<Collider>().enabled = true;
             rb.useGravity = true;
             rb.AddForce(parent.transform.forward * speedRelease, ForceMode.Impulse);
             GetComponent<Outline>().enabled = false;
-
+            audioSource.Stop();
+            audioSource.clip = swishSFX;
+            audioSource.Play();
 
         }
         else if (combine)
