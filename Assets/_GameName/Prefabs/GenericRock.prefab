@@ -114,6 +114,7 @@ MonoBehaviour:
   contract: 0
   speedRelease: 100
   expansionSpeed: 4
+  isBigRock: 0
   isLongRock: 0
   swishSFX: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
 --- !u!114 &-7602199873082881073
@@ -157,7 +158,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &7907968366585385040
 BoxCollider:
   m_ObjectHideFlags: 0

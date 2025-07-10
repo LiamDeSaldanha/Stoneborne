@@ -512,6 +512,8 @@ public class RockCircleController : MonoBehaviour
                 rocks[i] = Instantiate(genericRocks, transform);
                 rocks[i].GetComponent<RockController>().index = i;
                 rocks[i].GetComponent<RockController>().parent = parent;
+                rocks[i].GetComponent<Collider>().enabled = false;
+
                 if (parent.CompareTag("Enemy"))
                 {
                     rocks[i].tag = "Enemy_Rock";

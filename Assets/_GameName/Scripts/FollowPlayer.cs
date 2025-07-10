@@ -40,7 +40,7 @@ public class FollowPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             
-            player.GetComponent<PlayerController>().inCombat = true;
+            
 
             // Ground check
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
@@ -68,8 +68,5 @@ public class FollowPlayer : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        player.GetComponent<PlayerController>().inCombat = false;
-    }
+    
 }
