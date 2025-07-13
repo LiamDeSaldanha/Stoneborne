@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Rock
   - Enemy
+  - Enemy_Rock
+  - Big_Rock
+  - CinemachineTarget
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - MiniMap
+  - Enviroment
+  - Ground
   - 
   - 
   - 
@@ -40,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Top
+    uniqueID: 2661800693
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
