@@ -29,7 +29,7 @@ A game developed during a 3-week game jam hosted by the Sozo Labs. This project 
 - UI/UX for Games
 - Presentation & Communication
 - Publishing to Itch.io
-- Team Collaboration & Mentorship
+- Mentorship
 
 
 ## 🔗 Play the Game
