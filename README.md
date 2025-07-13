@@ -17,8 +17,8 @@ A game developed during a 3-week game jam hosted by the Sozo Labs. This project 
 
 - **Engine:** Unity
 - **Language:** C#
-- **Platform:** WebGL / Windows / (whichever platform you targeted)
-- **Tools:** Git (if used), Itch.io, Unity Learn
+- **Platform:** WebGL / Windows 
+- **Tools:** Git , Itch.io, Unity Learn
 
 ## 🧩 Key Skills Demonstrated
 
