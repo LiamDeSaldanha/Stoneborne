@@ -1,6 +1,8 @@
 # 🎮 Stoneborne
 
 A game developed during a 3-week game jam hosted by the Sozo Labs. This project was my first end-to-end experience with Unity and involved learning, designing, developing, publishing, and presenting a complete game.
+<img width="1198" height="643" alt="image" src="https://github.com/user-attachments/assets/35426ab9-f06b-4f9f-b13d-7e31449d647b" />
+<img width="1195" height="733" alt="image" src="https://github.com/user-attachments/assets/828a61af-d3f4-4cda-9028-ed139400c363" />
 
 ## 📅 Duration
 **3 Weeks** | Hosted by: Sozo Labs
